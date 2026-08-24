@@ -1,0 +1,62 @@
+name: Build NeoForge 1.21.1
+
+on:
+  push:
+    branches:
+      - '1.21.1'
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: neoforge-1.21.1-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build NeoForge JAR
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build NeoForge 1.21.1 JAR
+        shell: bash
+        run: |
+          for attempt in 1 2 3; do
+            ./gradlew --no-daemon :neoforge:remapJar && exit 0
+
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+
+            echo "Build attempt $attempt failed; retrying in 15 seconds..."
+            sleep 15
+          done
+
+      - name: Upload NeoForge JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: reterraforged-neoforge-1.21.1
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            neoforge/build/libs/*.jar
+            !neoforge/build/libs/*-dev.jar
+            !neoforge/build/libs/*-shadow.jar
+            !neoforge/build/libs/*-sources.jar
