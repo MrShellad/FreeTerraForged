@@ -34,7 +34,7 @@ public final class RTFTranslationKeys {
 	public static final String GUI_COMMUNITY1_PRESET_NAME = resolve("gui.preset.community1.name");
 	public static final String GUI_WORLD_SETTINGS_TITLE = resolve("gui.worldSettings.title");
 	public static final String GUI_SURFACE_SETTINGS_TITLE = resolve("gui.surfaceSettings.title");
-	public static final String GUI_CAVE_SETTINGS_TITLE = resolve("gui.caveSettings.title");
+	public static final String GUI_UNDERGROUND_SETTINGS_TITLE = resolve("gui.undergroundSettings.title");
 	public static final String GUI_CLIMATE_SETTINGS_TITLE = resolve("gui.climateSettings.title");
 	public static final String GUI_TERRAIN_SETTINGS_TITLE = resolve("gui.terrainSettings.title");
 	public static final String GUI_RIVER_SETTINGS_TITLE = resolve("gui.riverSettings.title");
@@ -230,6 +230,12 @@ public final class RTFTranslationKeys {
 	public static final String GUI_BUTTON_FLOW_PARTICLES = resolve("gui.button.river.flow.particles");
 	public static final String GUI_BUTTON_BOAT_FLOW_DYNAMICS = resolve("gui.button.boat.flow.dynamics");
 	public static final String GUI_BUTTON_NAVIGABLE_WATERFALLS = resolve("gui.button.boat.navigable.waterfalls");
+    public static final String GUI_SLIDER_ISLAND_MOUNTAIN_HORIZONTAL_SCALE = resolve("gui.slider.islandMountainHorizontalScale");
+	public static final String GUI_SLIDER_ISLAND_VOLCANISM_HORIZONTAL_SCALE = resolve("gui.slider.islandVolcanismHorizontalScale");
+    public static final String GUI_SLIDER_ISLAND_MACRO_DENSITY = resolve("gui.slider.islandMacroDensityPercentage");
+	public static final String GUI_LABEL_ISLAND_TRANSITIONS = resolve("gui.label.islandTransitions");
+	public static final String GUI_LABEL_ISLAND_SCALES = resolve("gui.label.islandScales");
+	public static final String GUI_LABEL_ISLAND_CHANCES = resolve("gui.label.islandChances");
 
 	private static String resolve(String key) {
 		return RTFCommon.MOD_ID + "." + key;
